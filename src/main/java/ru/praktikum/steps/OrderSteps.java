@@ -1,14 +1,13 @@
-package ru.yandex.praktikum.steps;
+package ru.praktikum.steps;
 
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import ru.yandex.praktikum.model.OrderCreateReqest;
-import ru.yandex.praktikum.model.OrderResponse;
+import ru.praktikum.model.OrderCreateReqest;
+import ru.praktikum.model.OrderResponse;
 
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.options;
 
 public class OrderSteps {
     public Response createOrder(String firstName, String lastName, String address, String metroStation,
@@ -46,6 +45,15 @@ public class OrderSteps {
                 .body(orderResponse)
                 .when()
                 .delete("/api/v1/orders/cancel")
+                .then();
+    }
+
+    public ValidatableResponse getOrder(){
+        return given()
+                .header("Content-type", "application/json")
+                .and()
+                .when()
+                .get("/api/v1/orders")
                 .then();
     }
 }

@@ -1,4 +1,4 @@
-package ru.yandex.praktikum.model;
+package ru.praktikum.model;
 
 public class CourierCreateRequest {
     private String login;

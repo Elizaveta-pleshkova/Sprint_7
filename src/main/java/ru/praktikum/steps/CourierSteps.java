@@ -1,9 +1,9 @@
-package ru.yandex.praktikum.steps;
+package ru.praktikum.steps;
 
 
 import io.restassured.response.ValidatableResponse;
-import ru.yandex.praktikum.model.CourierCreateRequest;
-import ru.yandex.praktikum.model.CourierLoginRequest;
+import ru.praktikum.model.CourierCreateRequest;
+import ru.praktikum.model.CourierLoginRequest;
 
 import static io.restassured.RestAssured.given;
 

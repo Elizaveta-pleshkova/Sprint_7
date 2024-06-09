@@ -1,9 +1,6 @@
-package ru.yandex.praktikum;
+package ru.praktikum;
 
-import io.qameta.allure.Allure;
 import io.restassured.RestAssured;
-import io.restassured.filter.log.RequestLoggingFilter;
-import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
@@ -11,10 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.junit.runners.Suite;
-import ru.yandex.praktikum.model.OrderResponse;
-import ru.yandex.praktikum.steps.CourierSteps;
-import ru.yandex.praktikum.steps.OrderSteps;
+import ru.praktikum.steps.OrderSteps;
 
 import java.util.List;
 

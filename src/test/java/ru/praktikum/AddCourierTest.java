@@ -1,13 +1,12 @@
-package ru.yandex.praktikum;
+package ru.praktikum;
 
 import io.restassured.RestAssured;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ru.yandex.praktikum.steps.CourierSteps;
+import ru.praktikum.steps.CourierSteps;
 
-import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 public class AddCourierTest {
