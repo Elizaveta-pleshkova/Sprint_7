@@ -1,14 +1,17 @@
 package ru.praktikum.steps;
 
 
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 import ru.praktikum.model.CourierCreateRequest;
 import ru.praktikum.model.CourierLoginRequest;
 
 import static io.restassured.RestAssured.given;
+import static ru.praktikum.config.EndPoint.*;
 
 public class CourierSteps {
 
+    @Step("Отправка запроса на создание курьера")
     public ValidatableResponse createCourier(String login, String password, String firstName){
         CourierCreateRequest courierCreateRequest = new CourierCreateRequest();
         courierCreateRequest.setLogin(login);
@@ -20,10 +23,11 @@ public class CourierSteps {
                 .and()
                 .body(courierCreateRequest)
                 .when()
-                .post("/api/v1/courier")
+                .post(CREATE_COURIER_URL)
                 .then();
     }
 
+    @Step("Отправка запроса на логин курьера")
     public ValidatableResponse loginCourier(String login, String password){
         CourierLoginRequest courierLoginRequest = new CourierLoginRequest();
         courierLoginRequest.setLogin(login);
@@ -33,17 +37,18 @@ public class CourierSteps {
                 .and()
                 .body(courierLoginRequest)
                 .when()
-                .post("/api/v1/courier/login")
+                .post(LOGIN_COURIER_URL)
                 .then();
     }
 
+    @Step("Отправка запроса на удаление курьера")
     public ValidatableResponse deleteCourier(Integer id) {
         return given()
                 .header("Content-type", "application/json")
                 .and()
                 .pathParams("id", id)
                 .when()
-                .delete("/api/v1/courier/{id}")
+                .delete(DELETE_COURIER_URL)
                 .then();
     }
 

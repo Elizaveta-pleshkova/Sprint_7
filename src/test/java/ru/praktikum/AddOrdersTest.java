@@ -1,5 +1,7 @@
 package ru.praktikum;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.CoreMatchers;
@@ -8,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import ru.praktikum.config.RestConfig;
 import ru.praktikum.steps.OrderSteps;
 
 import java.util.List;
@@ -42,8 +45,9 @@ public class AddOrdersTest {
     }
 
     @Before
+    @Step("Подготовка к тестам. Описание BaseURI и создание тестовых данных.")
     public void setUp() {
-        RestAssured.baseURI = "https://qa-scooter.praktikum-services.ru";
+        RestAssured.baseURI = RestConfig.HOST;
         firstName = "testName";
         lastName = "testLastName";
         address = "Moscow, 124";
@@ -55,6 +59,7 @@ public class AddOrdersTest {
     }
 
     @Test
+    @DisplayName("Создание нового заказа со всевозможными вариантами выбора цвета самоката. Ожидаемый результат 201")
     public void createOrder_ShouldReturnCorrectResult201(){
         Response response = orderSteps
                 .createOrder(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
@@ -65,6 +70,7 @@ public class AddOrdersTest {
     }
 
     @After
+    @Step("Удаление созданного заказа")
     public void tearDown(){
         if (track != null){
             orderSteps.deleteOrder(track);}
